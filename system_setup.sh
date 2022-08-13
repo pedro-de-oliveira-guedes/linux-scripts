@@ -40,6 +40,11 @@ echo "Creating the $PRINT_FOLDERS directories..."
 
 sudo mkdir $FOLDERS
 
+echo "Making the root user own every non public folder created..."
+chown root:$ADM_GROUP $ADM
+chown root:$SALES_GROUP $SALES
+chown root:$SEC_GROUP $SEC
+
 
 echo "Creating the groups..."
 
@@ -81,4 +86,5 @@ passwd amanda -e
 
 useradd rogerio -c "" -G $SEC_GROUP -p $(openssl passwd -crypt $STANDARD_PASSWORD)
 passwd rogerio -e
+
 
