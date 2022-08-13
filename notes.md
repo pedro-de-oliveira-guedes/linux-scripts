@@ -318,3 +318,53 @@ Caso o pacote buscado não esteja presente nas configurações atuais do Ubuntu,
 - Para de fato atualizar o sistema, utilizamos “***apt upgrade***”
 É possível também fazer download através de links de repositórios da internet utilizando o “***wget***”. A sintaxe é:
 > ***wget <link_repo_pacote>***
+
+<br/>
+
+---
+
+<br/>
+
+# **Gerenciamento de Discos**
+Um disco é um objeto físico que é utilizado para armazenar arquivos. Existem basicamente discos de dois tipos:
+- **HD (Hard Disk)**, que é lento, mas armazena uma grande quantidade de dados.
+- **SSD (Solid State Disk)**, que é mais rápido, mas armazena uma quantidade de dados mais reduzida.
+
+Diferentes Sistemas Operacionais possuem diferentes **Sistemas de arquivos**, que definem o máximo de memória que um disco pode ter, além de como as informações são organizadas no sistema.
+
+Um disco pode ser dividido, dentro do sistema operacional. Essa divisão é chamada de **partição**. No Linux, os discos físicos têm o nome prefixado por “**sd**”, seguido por uma letra que indica qual disco é. As partições seguem o mesmo prefixo e são acrescidas de um número ao final, indicando qual partição aquela é.
+
+Para listar os discos reconhecidos pelo sistema, é utilizado o comando “***lsblk***”, ou o comando “***fdisk -l***”.
+
+## **Instalando um disco**
+Quando um novo disco físico é adicionado, ele precisa ser configurado para utilização pelo sistema. Para fazer isso, utilizamos os comandos:
+1.	***fdisk /dev/<nome_disco>***: Para abrir as configurações do disco selecionado.
+2.	**n**: Para indicar que será criada uma partição no disco
+3.	**p** ou **e**: A depender se a partição será **primária** (única partição), ou **estendida** (várias partições podem ser adicionadas depois), respectivamente.
+4.	***<numero_da_particao>***: Quando a partição for visualizada, esse é o número que a diferenciará.
+5.	***<numero_primeiro_setor>***: Funciona como um “endereço de memória”, em que parte do disco as informações começarão a ser escritas.
+6.	***<numero_ultimo_setor>***: Último endereço utilizado pela partição do disco.
+7.	**w**: Escreve as alterações feitas na configuração.
+
+Antes da utilização, ainda é necessário formatar o disco instalado. Para isso, é utilizado o comando abaixo:
+
+> ***mkfs.<sistema_de_arquivos> /dev/<nome_disco>***: Isso fará com que o disco seja formatado de acordo com o sistema de arquivos indicado. Por padrão, é utilizado “**ext4**”, mas existem outros.
+
+Feitas essas configurações, ainda é necessário montar o disco no sistema para poder utilizar. Para isso, siga os passos:
+1.	***cd /mnt/***: Diretório padrão para montagem de discos no sistema.
+2.	***mkdir <nome_pasta_disco>***: O nome da pasta do disco não está limitado ao padrão “**sd...**”.
+3.	***mount /dev/<nome_disco> /mnt/<nome_pasta_disco>/***: Esse comando realiza a montagem do disco.
+
+A partir desse momento, a configuração já foi finalizada e o disco está disponível para uso. Todos os arquivos salvos no novo disco ficarão disponíveis na pasta “**/mnt/<nome_pasta_disco>**”.
+
+A pasta “**/mnt/**” não é obrigatória para a montagem do disco, ela é apenas um padrão para isso. Sendo assim, é possível montar o novo disco na própria pasta raiz do sistema.
+
+Sempre que a máquina é reiniciada, é necessário remontar o disco. A menos que o processo de montagem seja automatizado, da forma que os passos a seguir indicam:
+
+1.	***nano /etc/fstab***: Mostra todos os discos montados do sistema
+2.	***/dev/<nome_disco> <nome_pasta_disco> <sistema_de_arquivos_disco> defaults 0 0***:  Digite essa linha no final do arquivo aberto. O sistema de arquivos, como dito anteriormente, geralmente é configurado como “**ext4”**.
+3.	Salve o arquivo
+
+Dessa forma, o disco sempre estará montado ao iniciar o computador.
+
+Para desmontar o disco, é utilizado o comando “***unmount /dev/<nome_disco>***”. Perceba que isso não exclui os arquivos salvos, apenas desmonta o disco para que ele possa ser removido. Caso os passos de montagem sejam executados novamente, todos os arquivos salvos permanecerão na pasta.
