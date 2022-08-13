@@ -128,3 +128,20 @@ Para sair do modo de escrita aperta-se “**Esc**”.
 Para acessar o menu, deve-se estar no modo de leitura. Aperta-se o caractere “**:**” e digita-se as opções que se deseja.
 - **W**: Essa opção no menu serve para salvar as alterações feitas no arquivo.
 - **Q**: Essa opção no menu serve para finalizar o editor de texto.
+
+<br/>
+
+---
+
+<br/>
+
+# **Criação de Scripts**
+Uma das grandes vantagens do terminal do Linux é a possibilidade de utilizar scripts de comando para executar certas tarefas repetitivas mais facilmente. Esses scripts são criados em uma das pastas do sistema e executados pelo próprio terminal.
+
+Todo script shell deve possuir extensão “**.sh**”. Para isso, é possível criar um novo através do editor de texto **nano**. Outra especificidade dos scripts shell é a necessidade de serem iniciados pelo comando: “**#!/bin/bash**”. Esse comando especifica o kernel utilizado, sendo essencial para o bom funcionamento.
+
+As linhas seguintes do arquivo são utilizadas normalmente para escrever os comandos desejados.
+
+Depois dos comandos definidos e do script salvo, deve-se permitir a execução do script pelo sistema. Isso é feito através do comando:
+
+> ***chmod +x <nome_do_script>***
