@@ -3,15 +3,20 @@
 # For this script to run properly, you have to use it in root mode!
 # Just type "sudo ./system_setup.sh" and you will be fine!
 
-# Variables section
+# ============================= Variables section ===============================
+
+# Folders
 PUBLIC="publico/"
 ADM="adm/"
 SALES="ven/"
 SEC="sec/"
 
+# Grouping folders
 FOLDERS="$PUBLIC $ADM $SALES $SEC"
 PRINT_FOLDERS="\"$PUBLIC\", \"$ADM\", \"$SALES\" and \"$SEC\""
 
+
+# ============================ Script Section =================================
 cd /home
 
 echo "Removing the $PRINT_FOLDERS directories, in case they already exist..."
