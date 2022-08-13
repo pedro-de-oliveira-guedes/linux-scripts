@@ -1,3 +1,83 @@
+# **Navegação**
+<ul>
+    <li>
+        <a href="#1">Acesso remoto a máquinas Linux</a>
+        <ul>
+            <li>
+                <a href="#1.1">Acessando por um Windows</a>
+            </li>
+            <li>
+                <a href="#1.2">Acessando por um Linux</a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a href="#2">Terminal Linux</a>
+    </li>
+    <li>
+        <a href="#3">Usuário Raiz</a>
+    </li>
+    <li>
+        <a href="#4">Editores de texto</a>
+    </li>
+    <li>
+        <a href="#5">Criação de Scripts</a>
+    </li>
+    <li>
+        <a href="#6">Gerenciamento de Usuários</a>
+        <ul>
+            <li>
+                <a href="#6.1">Edição de informações do usuário</a>
+            </li>
+            <li>
+                <a href="#6.2">Listar usuários do sistema</a>
+            </li>
+            <li>
+                <a href="#6.3">Grupos de usuário</a>
+            </li>
+            <li>
+                <a href="#6.4">Permissão de grupos e usuários</a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a href="#7">Gerenciamento de Pacote</a>
+    </li>
+    <li>
+        <a href="#8">Gerenciamento de Discos</a>
+        <ul>
+            <li>
+                <a href="#8.1">Instalando um disco</a>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <a href="#9">Manipulação de arquivos</a>
+        <ul>
+            <li>
+                <a href="#9.1">Cópia de arquivos</a>
+            </li>
+            <li>
+                <a href="#9.2">Movendo arquivos</a>
+            </li>
+            <li>
+                <a href="#9.3">Renomeando arquivos</a>
+            </li>
+            <li>
+                <a href="#9.4">Manipulando processos</a>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<br/>
+
+---
+
+<br/>
+
+<div id="1">
+
 # **Acesso remoto a máquinas Linux**
 
 É preciso saber o IP. Para saber, acesse a máquina virtual e utilize o comando
@@ -12,6 +92,8 @@ A máquina virtual deve ter um roteador instalado. Para isso, utilize o comando
 
 A máquina virtual também deve estar configurada como “*bridge*”.
 
+<div id="1.1">
+
 ## **Acessando por um Windows:**
 
 Faça o download do programa “Putty”. Deve-se baixar os arquivos “**putty.exe**” e “**puttygen.exe**”.
@@ -20,19 +102,29 @@ A conexão só funciona se ambas as máquinas estiverem na mesma faixa de IP.
 
 Basta digitar o IP encontrado e confirmar. Após isso, digite o usuário e senha da máquina virtual e conecte-se normalmente.
 
+</div>
+
+<div id="1.2">
+
 ## **Acessando por um Linux:**
 
 Não é necessário um software de terceiros. Basta digitar o comando a seguir, substituindo os parâmetros pelos que se quer usar:
 
 > ***ssh <nome_usuario_maquina_destino>@<IP_maquina_destino>***
 
-Após apertar Enter, confirme e digite a senha do usuário utilizado. 
+Após apertar Enter, confirme e digite a senha do usuário utilizado.
+
+</div>
+
+</div>
 
 <br/>
 
 ---
 
 <br/>
+
+<div id="2">
 
 # **Terminal Linux**
 A seguir, temos os principais comandos utilizados no Terminal do Linux.
@@ -70,11 +162,15 @@ A seguir, temos os principais comandos utilizados no Terminal do Linux.
     - Para informações de data e hora de execução do comando, é necessário alterar uma variável de ambiente do sistema. Para fazer isso, execute o comando: **export HISTTIMEFORMAT = “%c “**.
     - Para que os comandos não sejam armazenados no histórico, é feita a alteração: ***set +o history***. Para voltar a armazenar, é utilizado ***set -o history***.
 
+</div>
+
 <br/>
 
 ---
 
 <br/>
+
+<div id="3">
 
 # **Usuário raiz**
 No geral, quando um usuário não é administrador, ele pode executar comandos de administrador ao adicionar a palavra “**sudo**” no início do comando pretendido.
@@ -112,11 +208,15 @@ O Ubuntu, por padrão, não permite que o usuário root seja acessado remotament
     </li>
 </ol>
 
+</div>
+
 <br/>
 
 ---
 
 <br/>
+
+<div id="4">
 
 # **Editores de texto (VI)**
 Editor de texto padrão do Ubuntu. Não possui nenhuma interface gráfica. Para abrir um texto com esse editor, basta utilizar o comando: ***vi <nome_arquivo>***. Se o arquivo informado não existir, ele será criado para edição.
@@ -129,11 +229,15 @@ Para acessar o menu, deve-se estar no modo de leitura. Aperta-se o caractere “
 - **W**: Essa opção no menu serve para salvar as alterações feitas no arquivo.
 - **Q**: Essa opção no menu serve para finalizar o editor de texto.
 
+</div>
+
 <br/>
 
 ---
 
 <br/>
+
+<div id="5">
 
 # **Criação de Scripts**
 Uma das grandes vantagens do terminal do Linux é a possibilidade de utilizar scripts de comando para executar certas tarefas repetitivas mais facilmente. Esses scripts são criados em uma das pastas do sistema e executados pelo próprio terminal.
@@ -146,11 +250,15 @@ Depois dos comandos definidos e do script salvo, deve-se permitir a execução d
 
 > ***chmod +x <nome_do_script>***
 
+</div>
+
 <br/>
 
 ---
 
 <br/>
+
+<div id="6">
 
 # **Gerenciamento de usuários**
 Para **criar** um usuário é utilizado o comando:
@@ -184,15 +292,25 @@ Por padrão, o kernel utilizado é o bash. Então o comando seria: ***chsh -s /b
 
 Quando queremos logar como um usuário, digitamos ***su <nome_usuario>***.
 
+<div id="6.1">
+
 ## **Edição de informações do usuário**
 No geral, a alteração de informações e configurações de um usuário é relativamente simples. Ela gira em torno do comando ***usermod***. A sintaxe é:
 
 > ***usermod <nome_usuario> <parâmetros_e_valores>***
 
+</div>
+
+<div id="6.2">
+
 ## **Listar usuários do sistema**
 Os usuários estão registrados no arquivo de texto “**passwd**”, localizado na pasta “**/etc**”. Para visualizar, utilize o comando:
 
 > ***cat /etc/passwd***
+
+</div>
+
+<div id="6.3">
 
 ## **Grupos de usuário**
 Para visualizar todos os grupos e usuários atribuídos a eles, é visualizado o arquivo “**group**” presente na pasta “**/etc**”.
@@ -210,6 +328,10 @@ Para remover um usuário de um grupo, é utilizado o comando “***gpasswd***”
 É possível também **criar novos grupos** para usuários específicos com permissões específicas, o que favorece a organização do sistema. Para criar um grupo, utilize o comando “***groupadd”***, seguido pelo nome do grupo. Por exemplo “***groupadd TESTE***”.
 
 De forma semelhante, é possível excluir um grupo com o comando “***groupdel***” seguindo a sintaxe: “***groupdel <nome_grupo>***”.
+
+</div>
+
+<div id="6.4">
 
 ## **Permissão de grupos e usuários**
 Para verificar quais são as permissões de um usuário no sistema, pode-se utilizar o comando “***ls -l***” dentro do diretório “**/home**”. A flag “***-l***” exibe detalhes sobre os arquivos, assim como já foi abordado anteriormente nesse documento. Entre os detalhes exibidos, estão as permissões codificadas por letras, de acordo com a tabela a seguir:
@@ -297,13 +419,19 @@ A utilização do comando segue a sintaxe:
 
 > ***chmod <+_ou_-><letra_da_permissao_(r_w_x)> <arquivo_ou_diretorio>***
 
+</div>
+
+</div>
+
 <br/>
 
 ---
 
 <br/>
 
-# Gerenciamento de Pacotes
+<div id="7">
+
+# **Gerenciamento de Pacotes**
 Eventualmente devemos instalar softwares não nativos do Ubuntu. Para isso, utilizamos gerenciadores de pacote. O mais conhecido é o “**apt-get**”. 
 
 Caso o pacote buscado não esteja presente nas configurações atuais do Ubuntu, é possível adicionar um novo link do repositório que contem o pacote. Para isso, utilizamos o comando “**apt edit-sources**”.
@@ -319,11 +447,15 @@ Caso o pacote buscado não esteja presente nas configurações atuais do Ubuntu,
 É possível também fazer download através de links de repositórios da internet utilizando o “***wget***”. A sintaxe é:
 > ***wget <link_repo_pacote>***
 
+</div>
+
 <br/>
 
 ---
 
 <br/>
+
+<div id="8">
 
 # **Gerenciamento de Discos**
 Um disco é um objeto físico que é utilizado para armazenar arquivos. Existem basicamente discos de dois tipos:
@@ -335,6 +467,8 @@ Diferentes Sistemas Operacionais possuem diferentes **Sistemas de arquivos**, qu
 Um disco pode ser dividido, dentro do sistema operacional. Essa divisão é chamada de **partição**. No Linux, os discos físicos têm o nome prefixado por “**sd**”, seguido por uma letra que indica qual disco é. As partições seguem o mesmo prefixo e são acrescidas de um número ao final, indicando qual partição aquela é.
 
 Para listar os discos reconhecidos pelo sistema, é utilizado o comando “***lsblk***”, ou o comando “***fdisk -l***”.
+
+<div id="8.1">
 
 ## **Instalando um disco**
 Quando um novo disco físico é adicionado, ele precisa ser configurado para utilização pelo sistema. Para fazer isso, utilizamos os comandos:
@@ -369,13 +503,22 @@ Dessa forma, o disco sempre estará montado ao iniciar o computador.
 
 Para desmontar o disco, é utilizado o comando “***unmount /dev/<nome_disco>***”. Perceba que isso não exclui os arquivos salvos, apenas desmonta o disco para que ele possa ser removido. Caso os passos de montagem sejam executados novamente, todos os arquivos salvos permanecerão na pasta.
 
+</div>
+
+</div>
+
 <br/>
 
 ---
 
 <br/>
 
+<div id="9">
+
 # **Manipulação de arquivos e processos**
+
+<div id="9.1">
+
 ## **Cópia de arquivos**
 Para copiar um arquivo, o comando utilizado é o “***cp***”. A sintaxe dele é: 
 
@@ -389,6 +532,10 @@ Os arquivos copiados aceitam a utilização de *Regex* e *Wildcards*. Ou seja, s
 
 - Para ficar a par do progresso das cópias, é possível utilizar o modo “verboso” através da flag “***-v***”. 
 
+</div>
+
+<div id="9.2">
+
 ## **Movendo arquivos**
 O comando utilizado é o “***mv***”. Ele é escrito seguindo a sintaxe:
 
@@ -398,10 +545,18 @@ O novo nome do arquivo é opcional, se não for informado, o arquivo é movido c
 
 Segue os mesmos padrões descritos na cópia, as flags anteriormente citadas se aplicam para essa operação.
 
+</div>
+
+<div id="9.3">
+
 ## **Renomeando arquivos**
 Também utiliza o comando “***mv***”. Segue a sintaxe:
 
 > ***mv <caminho_arquivo>/<antigo_nome_arquivo> <caminho_arquivo>/<novo_nome_arquivo>***
+
+</div>
+
+<div id="9.4">
 
 ## **Manipulando processos**
 Os processos são as seções e execuções de aplicativos e programas. Para visualizar todos os processos ativos no sistema, utilizamos o comando “***ps***”. Para saber os processos de todos usuários, adicionamos a letra “**a**” ao final. Para saber o nome do usuário que está executando o processo, a letra “**u**” é adicionada. Abaixo temos um exemplo:
@@ -421,3 +576,7 @@ Isso finaliza todos os processos ativos por todos os usuários cujo nome é o in
 A finalização de processos também pode ser utilizada para remover usuários do sistema. Para isso, é necessário saber qual o PID de Logon do usuário ativo, que pode ser obtido com o comando “***who -a***”. Ele mostra o nome de usuário, data e hora de logon no sistema e o PID do mesmo.
 
 Para remover o usuário, basta utilizar o comando “***kill***” seguido do PID do usuário, assim como foi mostrado acima.
+
+</div>
+
+</div>
