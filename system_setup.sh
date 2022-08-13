@@ -35,6 +35,26 @@ rm -r -f $SALES
 rm -r -f $SEC
 
 
+echo "Removing the groups in case they already exist..."
+groupdel $ADM_GROUP
+groupdel $SALES_GROUP
+groupdel $SEC_GROUP
+
+
+echo "Removing the users, in case they already exist..."
+userdel -r -f carlos
+userdel -r -f maria
+userdel -r -f joao_
+
+userdel -r -f debora
+userdel -r -f sebastiana
+userdel -r -f roberto
+
+userdel -r -f josefina
+userdel -r -f amanda
+userdel -r -f rogerio
+
+
 echo "Creating the $PRINT_FOLDERS directories..."
 sudo mkdir $FOLDERS
 
@@ -61,42 +81,42 @@ chmod 770 $SEC
 echo "Creating the system users..."
 
 echo "ADM employees..."
-useradd carlos -c "" -G $ADM_GROUP -p $(openssl passwd $STANDARD_PASSWORD)
+useradd carlos -c "ADM employee" -G $ADM_GROUP -p $(openssl passwd $STANDARD_PASSWORD)
 chsh -s /bin/bash carlos
 passwd carlos -e
 
-useradd maria -c "" -G $ADM_GROUP -p $(openssl passwd $STANDARD_PASSWORD)
+useradd maria -c "ADM employee" -G $ADM_GROUP -p $(openssl passwd $STANDARD_PASSWORD)
 chsh -s /bin/bash maria
 passwd maria -e
 
-useradd joao_ -c "" -G $ADM_GROUP -p $(openssl passwd $STANDARD_PASSWORD)
+useradd joao_ -c "ADM employee" -G $ADM_GROUP -p $(openssl passwd $STANDARD_PASSWORD)
 chsh -s /bin/bash joao_
 passwd joao_ -e
 
 
 echo "SALES employees..."
-useradd debora -c "" -G $SALES_GROUP -p $(openssl passwd $STANDARD_PASSWORD)
+useradd debora -c "SALES employee" -G $SALES_GROUP -p $(openssl passwd $STANDARD_PASSWORD)
 chsh -s /bin/bash debora
 passwd debora -e
 
-useradd sebastiana -c "" -G $SALES_GROUP -p $(openssl passwd $STANDARD_PASSWORD)
+useradd sebastiana -c "SALES employee" -G $SALES_GROUP -p $(openssl passwd $STANDARD_PASSWORD)
 chsh -s /bin/bash sebastiana
 passwd sebastiana -e
 
-useradd roberto -c "" -G $SALES_GROUP -p $(openssl passwd $STANDARD_PASSWORD)
+useradd roberto -c "SALES employee" -G $SALES_GROUP -p $(openssl passwd $STANDARD_PASSWORD)
 chsh -s /bin/bash roberto
 passwd roberto -e
 
 
 echo "SEC employees..."
-useradd josefina -c "" -G $SEC_GROUP -p $(openssl passwd $STANDARD_PASSWORD)
+useradd josefina -c "SEC employee" -G $SEC_GROUP -p $(openssl passwd $STANDARD_PASSWORD)
 chsh -s /bin/bash josefina
 passwd josefina -e
 
-useradd amanda -c "" -G $SEC_GROUP -p $(openssl passwd $STANDARD_PASSWORD)
+useradd amanda -c "SEC employee" -G $SEC_GROUP -p $(openssl passwd $STANDARD_PASSWORD)
 chsh -s /bin/bash amanda
 passwd amanda -e
 
-useradd rogerio -c "" -G $SEC_GROUP -p $(openssl passwd $STANDARD_PASSWORD)
+useradd rogerio -c "SEC employee" -G $SEC_GROUP -p $(openssl passwd $STANDARD_PASSWORD)
 chsh -s /bin/bash rogerio
 passwd rogerio -e
