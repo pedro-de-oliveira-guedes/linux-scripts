@@ -145,3 +145,160 @@ As linhas seguintes do arquivo são utilizadas normalmente para escrever os coma
 Depois dos comandos definidos e do script salvo, deve-se permitir a execução do script pelo sistema. Isso é feito através do comando:
 
 > ***chmod +x <nome_do_script>***
+
+<br/>
+
+---
+
+<br/>
+
+# **Gerenciamento de usuários**
+Para **criar** um usuário é utilizado o comando:
+
+> ***useradd <nome_usuario>***
+
+- ***-m***: Cria uma pasta home para esse usuário
+- ***-c “<comentário>”***: Define um nome ou um comentário para o usuário
+- ***-e <data_dd/mm/yyyy>***: Adiciona uma data de expiração do usuário no sistema. Após a data informada, não é possível mais acessar o sistema pelo usuário criado.
+- ***-G <nome_grupo>***: Adiciona o usuário ao grupo cujo nome foi informado.
+- ***-p <senha_encriptada>***: Para evitar de ter que editar a senha do usuário, é possível defini-la durante a criação.
+    - Para encriptar a senha, existe um serviço padrão do Ubuntu chamado openssl. Nesse caso, a utilização seria algo como “***-p $(openssl passwd -crypt <senha_normal>)***”. O cifrão e os parênteses servem para definir que é um comando sendo executado dentro de outro comando.
+Para **excluir** um usuário, é utilizado o comando:
+
+> ***userdel <nome_usuario>***
+
+- ***-r***: Remove a pasta home e outras configurações associadas ao usuário
+- ***-f***: Força a exclusão do usuário
+
+Para **alterar a senha** de um usuário é utilizado o comando:
+
+> ***passwd <nome_usuario>***
+
+- ***-e***: Força a senha atual a expirar. Quando for realizado login no usuário novamente, ela deverá ser, obrigatoriamente, trocada.
+
+Quando um usuário é criado, é necessário definir um kernel para ele. Isso torna possível executar comandos e interpretar pastas associadas àquele usuário em questão. Para isso, é utilizado o comando:
+
+> ***chsh -s <kernel_utilizado> <nome_usuario>***
+
+Por padrão, o kernel utilizado é o bash. Então o comando seria: ***chsh -s /bin/bash <nome_usuario>***
+
+Quando queremos logar como um usuário, digitamos ***su <nome_usuario>***.
+
+## **Edição de informações do usuário**
+No geral, a alteração de informações e configurações de um usuário é relativamente simples. Ela gira em torno do comando ***usermod***. A sintaxe é:
+
+> ***usermod <nome_usuario> <parâmetros_e_valores>***
+
+## **Listar usuários do sistema**
+Os usuários estão registrados no arquivo de texto “**passwd**”, localizado na pasta “**/etc**”. Para visualizar, utilize o comando:
+
+> ***cat /etc/passwd***
+
+## **Grupos de usuário**
+Para visualizar todos os grupos e usuários atribuídos a eles, é visualizado o arquivo “**group**” presente na pasta “**/etc**”.
+
+Para adicionar um usuário a um grupo, é utilizado o comando ***usermod***, juntamente com a flag “***-G***” e os grupos que se quer adicionar, separados por vírgula. Algo como:
+
+> ***usermod -G <nomes_dos_grupos> <nome_usuario>***
+
+Deve-se utilizar este comando com cuidado, já que o usuário será retirado de todos os grupos que fazia parte anteriormente, sendo adicionado somente aos informados. Eventualmente, ao adicionar um usuário a um grupo, pode haver uma demora ou necessidade de reiniciar a sessão/sistema.
+
+Para remover um usuário de um grupo, é utilizado o comando “***gpasswd***” seguindo a sintaxe a seguir:
+
+> ***gpasswd -d <nome_usuario> <grupo_que_sera_removido>***
+
+É possível também **criar novos grupos** para usuários específicos com permissões específicas, o que favorece a organização do sistema. Para criar um grupo, utilize o comando “***groupadd”***, seguido pelo nome do grupo. Por exemplo “***groupadd TESTE***”.
+
+De forma semelhante, é possível excluir um grupo com o comando “***groupdel***” seguindo a sintaxe: “***groupdel <nome_grupo>***”.
+
+## **Permissão de grupos e usuários**
+Para verificar quais são as permissões de um usuário no sistema, pode-se utilizar o comando “***ls -l***” dentro do diretório “**/home**”. A flag “***-l***” exibe detalhes sobre os arquivos, assim como já foi abordado anteriormente nesse documento. Entre os detalhes exibidos, estão as permissões codificadas por letras, de acordo com a tabela a seguir:
+
+<table>
+    <tr>
+        <th>
+            Letra
+        </th>
+        <th>
+            Significado
+        </th>
+    <tr>
+    <tr>
+        <td>
+            r
+        </td>
+        <td>
+            Permissão de leitura (Read)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            w
+        </td>
+        <td>
+            Permissão de escrita (Write)
+        </td>
+    </tr>
+    <tr>
+        <td>
+            x
+        </td>
+        <td>
+            Permissão de execução (Execute)
+        </td>
+    </tr>
+</table>
+
+No geral, quando as pastas dos usuários são exibidas conforme instruído no parágrafo anterior, as todas seguem um mesmo padrão:
+
+> D<span style="color: red">XXX</span><span style="color: green">XXX</span><span style="color: blue">XXX</span>
+
+Onde os “***X***” são substituídos por cada uma das letras da tabela anteriormente apresentada, sempre na ordem “***r***”, “***w***”, “***x***”. Quando uma dessas permissões não está presente, é adicionado um hífen no lugar dela. São três repetições de “***X***” porque há uma divisão de escopos, que são:
+- <span style="color: red">Vermelho</span>: Relativos ao próprio usuário, que é dono daquele diretório. Geralmente ele tem todas as permissões.
+- <span style="color: green">Verde</span>: Relativo ao grupo. Sempre que um novo usuário é criado, é criado também um novo grupo com o mesmo nome do usuário. Dessa forma, outros usuários podem ser adicionados ao grupo criado, tendo as permissões descritas nesse trecho da especificação. Geralmente somente as permissões de escrita e execução são garantidas.
+- <span style="color: blue">Azul</span>: Relativo aos usuários que não estão adicionados ao grupo do usuário em questão.
+
+É possível, através do usuário **root** ou algum outro que possua permissão de administrador, mudar o dono e  grupo de um arquivo ou diretório através do comando “***chown***”. Ele segue a sintaxe:
+
+> ***chown <usuário_novo_dono>:<grupo_novo_dono> <nome_diretorio_ou_arquivo>***
+
+Para definir e alterar as permissões sobre um arquivo, utilizamos o comando “***chmod***”. São atribuídos valores numéricos às permissões, de acordo com a tabela abaixo:
+
+<table>
+    <tr>
+        <th>Permissão</th>
+        <th>Valor</th>
+    </tr>
+    <tr>
+        <td>R (Leitura)</td>
+        <td>4</td>
+    </tr>
+    <tr>
+        <td>W (Escrita)</td>
+        <td>2</td>
+    </tr>
+    <tr>
+        <td>X (Execução)</td>
+        <td>1</td>
+    </tr>
+    <tr>
+        <td>Nenhuma</td>
+        <td>0</td>
+    </tr>
+</table>
+
+O nível de permissão é atribuído a grupos, assim como foi apresentado anteriormente. Dessa forma, as permissões atribuídas aos grupos, é dada pela soma dos valores de todas as permissões que se quer conceder. Por exemplo, se devemos conceder acesso total a um usuário, a soma seria: 1 + 2 + 4 = 7. Se queremos conceder apenas acesso de leitura e execução, a soma é: 1 + 4 = 5.
+
+A utilização do comando segue a sintaxe:
+
+> ***chmod <soma_permissoes_dono><soma_permissoes_grupo_dono><soma_permissoes_outros> <arquivo_ou_diretorio>***
+
+É possível adicionar e remover permissões específicas para o dono de um arquivo ou diretório. Para fazer isso, são utilizados os sinais “**+**” e “**-**“ para adicionar e remover, respectivamente uma permissão. Veja a sintaxe:
+
+> ***chmod <+_ou_-><letra_da_permissao_(r_w_x)> <arquivo_ou_diretorio>***
+
+<br/>
+
+---
+
+<br/>
