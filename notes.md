@@ -368,3 +368,56 @@ Sempre que a máquina é reiniciada, é necessário remontar o disco. A menos qu
 Dessa forma, o disco sempre estará montado ao iniciar o computador.
 
 Para desmontar o disco, é utilizado o comando “***unmount /dev/<nome_disco>***”. Perceba que isso não exclui os arquivos salvos, apenas desmonta o disco para que ele possa ser removido. Caso os passos de montagem sejam executados novamente, todos os arquivos salvos permanecerão na pasta.
+
+<br/>
+
+---
+
+<br/>
+
+# **Manipulação de arquivos e processos**
+## **Cópia de arquivos**
+Para copiar um arquivo, o comando utilizado é o “***cp***”. A sintaxe dele é: 
+
+> ***cp <caminho_origem_arquivo_copiado> <caminho_destino_copia>***
+
+Os arquivos copiados aceitam a utilização de *Regex* e *Wildcards*. Ou seja, se queremos mover todos os arquivos com a extensão “**.txt**”, por exemplo, utilizaríamos “***cp *.txt <destino>***”.
+
+- Caso já exista um arquivo de mesmo nome na pasta de destino, a operação de cópia irá sobrescrever o arquivo lá presente. Para evitar que isso aconteça, sempre utilize a flag “***-i***”. Ela faz com que o sistema pergunte se deve sobrescrever os arquivos copiados.
+
+- Por padrão, a cópia não é feita para diretórios. Para mudar isso, deve ser utilizada a flag “***-r***”.
+
+- Para ficar a par do progresso das cópias, é possível utilizar o modo “verboso” através da flag “***-v***”. 
+
+## **Movendo arquivos**
+O comando utilizado é o “***mv***”. Ele é escrito seguindo a sintaxe:
+
+> ***mv <origem_arquivo> <destino_arquivo>/<novo_nome_arquivo>***
+
+O novo nome do arquivo é opcional, se não for informado, o arquivo é movido com o mesmo nome que tinha na origem.
+
+Segue os mesmos padrões descritos na cópia, as flags anteriormente citadas se aplicam para essa operação.
+
+## **Renomeando arquivos**
+Também utiliza o comando “***mv***”. Segue a sintaxe:
+
+> ***mv <caminho_arquivo>/<antigo_nome_arquivo> <caminho_arquivo>/<novo_nome_arquivo>***
+
+## **Manipulando processos**
+Os processos são as seções e execuções de aplicativos e programas. Para visualizar todos os processos ativos no sistema, utilizamos o comando “***ps***”. Para saber os processos de todos usuários, adicionamos a letra “**a**” ao final. Para saber o nome do usuário que está executando o processo, a letra “**u**” é adicionada. Abaixo temos um exemplo:
+
+> ***ps au***
+
+Para encerrar um processo, utilizamos o comando “***kill***”. Ele segue a sintaxe:
+
+> ***kill <PID_processo>***
+
+O PID, por sua vez, é um identificador do processo ativo, que pode ser lido ao listar os processos, assim como anteriormente ensinado. É possível utilizar também o comando “***killall***”, com a sintaxe:
+
+> ***killall <nome_processo>***
+
+Isso finaliza todos os processos ativos por todos os usuários cujo nome é o informado.
+
+A finalização de processos também pode ser utilizada para remover usuários do sistema. Para isso, é necessário saber qual o PID de Logon do usuário ativo, que pode ser obtido com o comando “***who -a***”. Ele mostra o nome de usuário, data e hora de logon no sistema e o PID do mesmo.
+
+Para remover o usuário, basta utilizar o comando “***kill***” seguido do PID do usuário, assim como foi mostrado acima.
