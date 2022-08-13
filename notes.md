@@ -373,7 +373,7 @@ Para verificar quais são as permissões de um usuário no sistema, pode-se util
 
 No geral, quando as pastas dos usuários são exibidas conforme instruído no parágrafo anterior, as todas seguem um mesmo padrão:
 
-> D<span style="color: red">XXX</span><span style="color: green">XXX</span><span style="color: blue">XXX</span>
+> ![image](https://user-images.githubusercontent.com/72149404/184468467-c78f06e0-f3ef-450b-b820-da6a474e3574.png)
 
 Onde os “***X***” são substituídos por cada uma das letras da tabela anteriormente apresentada, sempre na ordem “***r***”, “***w***”, “***x***”. Quando uma dessas permissões não está presente, é adicionado um hífen no lugar dela. São três repetições de “***X***” porque há uma divisão de escopos, que são:
 - <span style="color: red">Vermelho</span>: Relativos ao próprio usuário, que é dono daquele diretório. Geralmente ele tem todas as permissões.
