@@ -51,6 +51,13 @@ chown root:$SALES_GROUP $SALES
 chown root:$SEC_GROUP $SEC
 
 
+echo "Granting the right permissions to every folder created..."
+chmod 777 $PUBLIC
+chmod 770 $ADM
+chmod 770 $SALES
+chmod 770 $SEC
+
+
 echo "Creating the system users..."
 
 echo "ADM employees..."
