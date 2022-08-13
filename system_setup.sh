@@ -40,9 +40,9 @@ sudo mkdir $FOLDERS
 
 
 echo "Creating the groups..."
-groupadd ADM_GROUP
-groupadd SALES_GROUP
-groupadd SEC_GROUP
+groupadd $ADM_GROUP
+groupadd $SALES_GROUP
+groupadd $SEC_GROUP
 
 
 echo "Making the root user own every non public folder created..."
@@ -61,33 +61,42 @@ chmod 770 $SEC
 echo "Creating the system users..."
 
 echo "ADM employees..."
-useradd carlos -c "" -G $ADM_GROUP -p $(openssl passwd -crypt $STANDARD_PASSWORD)
+useradd carlos -c "" -G $ADM_GROUP -p $(openssl passwd $STANDARD_PASSWORD)
+chsh -s /bin/bash carlos
 passwd carlos -e
 
-useradd maria -c "" -G $ADM_GROUP -p $(openssl passwd -crypt $STANDARD_PASSWORD)
+useradd maria -c "" -G $ADM_GROUP -p $(openssl passwd $STANDARD_PASSWORD)
+chsh -s /bin/bash maria
 passwd maria -e
 
-useradd joao_ -c "" -G $ADM_GROUP -p $(openssl passwd -crypt $STANDARD_PASSWORD)
+useradd joao_ -c "" -G $ADM_GROUP -p $(openssl passwd $STANDARD_PASSWORD)
+chsh -s /bin/bash joao_
 passwd joao_ -e
 
 
 echo "SALES employees..."
-useradd debora -c "" -G $SALES_GROUP -p $(openssl passwd -crypt $STANDARD_PASSWORD)
+useradd debora -c "" -G $SALES_GROUP -p $(openssl passwd $STANDARD_PASSWORD)
+chsh -s /bin/bash debora
 passwd debora -e
 
-useradd sebastiana -c "" -G $SALES_GROUP -p $(openssl passwd -crypt $STANDARD_PASSWORD)
+useradd sebastiana -c "" -G $SALES_GROUP -p $(openssl passwd $STANDARD_PASSWORD)
+chsh -s /bin/bash sebastiana
 passwd sebastiana -e
 
-useradd roberto -c "" -G $SALES_GROUP -p $(openssl passwd -crypt $STANDARD_PASSWORD)
+useradd roberto -c "" -G $SALES_GROUP -p $(openssl passwd $STANDARD_PASSWORD)
+chsh -s /bin/bash roberto
 passwd roberto -e
 
 
 echo "SEC employees..."
-useradd josefina -c "" -G $SEC_GROUP -p $(openssl passwd -crypt $STANDARD_PASSWORD)
+useradd josefina -c "" -G $SEC_GROUP -p $(openssl passwd $STANDARD_PASSWORD)
+chsh -s /bin/bash josefina
 passwd josefina -e
 
-useradd amanda -c "" -G $SEC_GROUP -p $(openssl passwd -crypt $STANDARD_PASSWORD)
+useradd amanda -c "" -G $SEC_GROUP -p $(openssl passwd $STANDARD_PASSWORD)
+chsh -s /bin/bash amanda
 passwd amanda -e
 
-useradd rogerio -c "" -G $SEC_GROUP -p $(openssl passwd -crypt $STANDARD_PASSWORD)
+useradd rogerio -c "" -G $SEC_GROUP -p $(openssl passwd $STANDARD_PASSWORD)
+chsh -s /bin/bash rogerio
 passwd rogerio -e
