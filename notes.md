@@ -302,3 +302,19 @@ A utilização do comando segue a sintaxe:
 ---
 
 <br/>
+
+# Gerenciamento de Pacotes
+Eventualmente devemos instalar softwares não nativos do Ubuntu. Para isso, utilizamos gerenciadores de pacote. O mais conhecido é o “**apt-get**”. 
+
+Caso o pacote buscado não esteja presente nas configurações atuais do Ubuntu, é possível adicionar um novo link do repositório que contem o pacote. Para isso, utilizamos o comando “**apt edit-sources**”.
+
+- Para saber quais pacotes e programas você tem instalado, é possível utilizar o comando “***apt list --installed***”.
+- Para saber quais podem ser atualizados, utilizamos “***apt list --upgradable***"
+- Para buscar um programa no gerenciador, podemos utilizar “***apt search <nome_pacote>***”
+- Para instalar um pacote, utilizamos “***apt install <nome_pacote>***”
+    - Quando temos um arquivo “*.deb*”, por exemplo, que é executável para instalar algo, podemos utilizar “***apt install <caminho_do_pacote_deb>***”.
+- Para desinstalar um pacote, utilizamos “***apt remove <nome_pacote>***”
+- Para definir os pacotes que devem ser atualizados para a atualização do sistema, utilizamos “***apt update***”.
+- Para de fato atualizar o sistema, utilizamos “***apt upgrade***”
+É possível também fazer download através de links de repositórios da internet utilizando o “***wget***”. A sintaxe é:
+> ***wget <link_repo_pacote>***
