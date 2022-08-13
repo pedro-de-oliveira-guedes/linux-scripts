@@ -69,3 +69,51 @@ A seguir, temos os principais comandos utilizados no Terminal do Linux.
     - ***-w***: Escreve o histórico no arquivo .bashrc localizado na pasta do usuário.
     - Para informações de data e hora de execução do comando, é necessário alterar uma variável de ambiente do sistema. Para fazer isso, execute o comando: **export HISTTIMEFORMAT = “%c “**.
     - Para que os comandos não sejam armazenados no histórico, é feita a alteração: ***set +o history***. Para voltar a armazenar, é utilizado ***set -o history***.
+
+<br/>
+
+---
+
+<br/>
+
+# **Usuário raiz**
+No geral, quando um usuário não é administrador, ele pode executar comandos de administrador ao adicionar a palavra “**sudo**” no início do comando pretendido.
+Como isso é uma tarefa cansativa, é possível contorna-la ao se logar como o usuário raiz (root). Para fazer isso, siga os passos:
+<ol>
+    <li>
+        Defina uma senha para o usuário root, caso já não exista. Para fazer isso, digite o comando: ***sudo passwd root***. Ao apertar Enter, será solicitada a senha do usuário que você está logado e uma senha e confirmação para ser setada para o usuário root.
+    </li>
+    <li>
+        Digite “<b><i>su</i></b>” e aperte Enter.
+    </li>
+    <li>
+        Você já está logado como root no sistema.
+    </li>
+    <li>
+        Para voltar para um usuário convencional, digite “<b><i>su < nome_usuario></i></b>”. Ao apertar Enter, você já estará no perfil do outro usuário.
+    </li>
+</ol>
+O Ubuntu, por padrão, não permite que o usuário root seja acessado remotamente de primeira. Ele permite que você acesse como um usuário comum, depois alterando para root. Para que isso seja liberado, é necessário realizar uma configuração específica. Siga os passos a seguir:
+<ol>
+    <li>
+        Acesse o arquivo de texto com as configurações de acesso remoto com permissão de edição. Para isso, digite o comando: <b><i>sudo nano etc/ssh/sshd_config.</i></b>
+    </li>
+    <li>
+        Localize o comando “<b>PermitRootLogin</b>” no documento e descomente-o.
+    </li>
+    <li>
+        Troque o “<b>prohibit-password</b>” para “<b>yes</b>” na frente do comando.
+    </li>
+    <li>
+        Aperte “<i>Ctrl+O</i>” e salve o arquivo com o mesmo nome.
+    </li>
+    <li>
+        Digite: <b><i>sudo systemctl restart sshd</i></b>, aperte Enter.
+    </li>
+</ol>
+
+<br/>
+
+---
+
+<br/>
