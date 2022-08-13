@@ -117,3 +117,14 @@ O Ubuntu, por padrão, não permite que o usuário root seja acessado remotament
 ---
 
 <br/>
+
+# **Editores de texto (VI)**
+Editor de texto padrão do Ubuntu. Não possui nenhuma interface gráfica. Para abrir um texto com esse editor, basta utilizar o comando: ***vi <nome_arquivo>***. Se o arquivo informado não existir, ele será criado para edição.
+
+Inicialmente, não é possível editar nada, já que o editor é aberto no modo leitura. Para mudar para o modo de escrita, deve-se apertar a letra “**i**”.
+
+Para sair do modo de escrita aperta-se “**Esc**”.
+
+Para acessar o menu, deve-se estar no modo de leitura. Aperta-se o caractere “**:**” e digita-se as opções que se deseja.
+- **W**: Essa opção no menu serve para salvar as alterações feitas no arquivo.
+- **Q**: Essa opção no menu serve para finalizar o editor de texto.
