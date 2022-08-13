@@ -29,7 +29,6 @@ cd /home
 
 
 echo "Removing the $PRINT_FOLDERS directories, in case they already exist..."
-
 rm -r -f $PUBLIC
 rm -r -f $ADM
 rm -r -f $SALES
@@ -37,20 +36,19 @@ rm -r -f $SEC
 
 
 echo "Creating the $PRINT_FOLDERS directories..."
-
 sudo mkdir $FOLDERS
+
+
+echo "Creating the groups..."
+groupadd ADM_GROUP
+groupadd SALES_GROUP
+groupadd SEC_GROUP
+
 
 echo "Making the root user own every non public folder created..."
 chown root:$ADM_GROUP $ADM
 chown root:$SALES_GROUP $SALES
 chown root:$SEC_GROUP $SEC
-
-
-echo "Creating the groups..."
-
-groupadd ADM_GROUP
-groupadd SALES_GROUP
-groupadd SEC_GROUP
 
 
 echo "Creating the system users..."
@@ -86,5 +84,3 @@ passwd amanda -e
 
 useradd rogerio -c "" -G $SEC_GROUP -p $(openssl passwd -crypt $STANDARD_PASSWORD)
 passwd rogerio -e
-
-
