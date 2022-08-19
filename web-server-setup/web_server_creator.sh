@@ -6,38 +6,39 @@
 # ============================= Variables section ===============================
 
 # Folders
-WEB_SERVER="/etc/www/html/"
-WEB_PAGE_DOWNLOAD="/tmp/"
+WEB_SERVER="/var/www/html"
+WEB_PAGE_DOWNLOAD="/tmp"
 
 
 
 # =========================== Functions section ================================
 DownloadApache() {
-    apt install apache2 -y
+    apt-get install apache2 -y
 }
 
 DownloadUnzip() {
-    apt install unzip -y
+    apt-get install unzip -y
 }
 
 UpdateSystem() {
-    apt update
-    apt upgrade -y
+    apt-get update
+    apt-get upgrade -y
 
     DownloadApache
     DownloadUnzip
 }
 
 DownloadWebPage() {
-    cd WEB_PAGE_DOWNLOAD
+    cd $WEB_PAGE_DOWNLOAD
+    rm -f main.zip
     wget https://github.com/denilsonbonatti/linux-site-dio/archive/refs/heads/main.zip
     unzip main.zip
 }
 
 SetWebServerPage() {
     DownloadWebPage
-    cd linux-site-dio-main/
-    cp * WEB_SERVER
+    cd $WEB_PAGE_DOWNLOAD/linux-site-dio-main
+    cp * -R $WEB_SERVER
 }
 
 
